@@ -23,7 +23,12 @@ jobs:
       - name: Generate Api Type
         run: bun run api:build
 
+      - name: Set current datetime as env variable
+        env:
+          TZ: "Asia/Tokyo"
+        run: echo "CURRENT_DATETIME=$(date + '%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
         with:
-          commit_message: generate api type
+          commit_message: echo "Generate API Type ${{ env.CURRENT_DATETIME }}"
