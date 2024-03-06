@@ -14,7 +14,7 @@ jobs:
         run: bun install
 
       - name: Generate Api Type
-        run: bunx openapi2aspida -i=openapi.yaml
+        run: bun run api:build
 
       - run: cat $GITHUB_EVENT_PATH
       - uses: actions/checkout@v3

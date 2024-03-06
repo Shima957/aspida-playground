@@ -5,11 +5,15 @@
   "devDependencies": {
     "@types/bun": "latest"
   },
+  "scripts": {
+    "api:build": "rm -rf api && openapi2aspida -i=openapi.yaml"
+  },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
     "@aspida/axios": "^1.14.0",
-    "axios": "^1.6.7"
+    "axios": "^1.6.7",
+    "openapi2aspida": "^0.23.2"
   }
 }
