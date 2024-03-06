@@ -8,6 +8,7 @@ export type Methods = {
       id: string
       title: string
       isRead: boolean
+      rank?: '1' | '2' | '3' | undefined
     }
   }
 }
