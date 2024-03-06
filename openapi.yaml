@@ -55,6 +55,10 @@ paths:
                   isRead:
                     type: boolean
                     example: false
+                  rank:
+                    type: string
+                    enum: ["1", "2", "3"]
+                    example: "2"
                 required:
                   - id
                   - title
