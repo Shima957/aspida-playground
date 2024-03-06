@@ -1,0 +1,38 @@
+name: generateApiType
+on: pull_request
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependecies
+        run: bun install
+
+      - name: Generate Api Type
+        run: bunx openapi2aspida -i=openapi.yaml
+
+      - run: cat $GITHUB_EVENT_PATH
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - run: ./script.sh
+      - name: Diff
+        id: diff
+        run: |
+          git add -N .
+          git diff --name-only --exit-code
+        continue-on-error: true
+      - name: Commit & Push
+        run: |
+          set -x
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit --author=. -m 'generated'
+          git push
+        if: steps.diff.outcome == 'failure'
