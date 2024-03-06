@@ -27,7 +27,39 @@ paths:
                     isRead:
                       type: boolean
                       example: false
+                    rank:
+                      type: string
+                      enum: ["1", "2", "3"]
+                      example: "2"
                   required:
                     - id
                     - title
                     - isRead
+  /book/{bookId}:
+    get:
+      summary: Return a book
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1j2l3kj1l23"
+                  title:
+                    type: string
+                    example: "book title"
+                  isRead:
+                    type: boolean
+                    example: false
+                  rank:
+                    type: string
+                    enum: ["1", "2", "3"]
+                    example: "2"
+                required:
+                  - id
+                  - title
+                  - isRead
