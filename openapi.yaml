@@ -1,0 +1,33 @@
+openapi: "3.0.2"
+info:
+  title: Sample API
+  version: "1.0"
+servers:
+  - url: http://localhost:3000
+paths:
+  /books:
+    get:
+      summary: Return a list of books
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1j2l3kj1l23"
+                    title:
+                      type: string
+                      example: "book title"
+                    isRead:
+                      type: boolean
+                      example: false
+                  required:
+                    - id
+                    - title
+                    - isRead
